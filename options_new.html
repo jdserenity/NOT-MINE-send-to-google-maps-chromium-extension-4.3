@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Send to Google Maps Extension - Options Page</title>
+	
+		<link type="text/css" href="css/smoothness/jquery-ui-1.10.0.custom.min.css" rel="stylesheet" />	
+		<script type="text/javascript" src="js/jquery-1.9.0.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.10.0.custom.min.js"></script>
+		<script type="text/javascript" src="js/optionPage_new.js"></script>
+		<script type="text/javascript" src="js/sendToGoogleMaps.js"></script>
+
+		<style type="text/css">
+			body{ font: 62.5% "Trebuchet MS", sans-serif; margin: 50px 50px 50px 100px;}
+			
+			dt {
+					line-height: 14px;
+					margin: 0px 10px 5px 0px;
+					text-align: left;
+					width: 400px;
+				}
+					
+					
+				dd {
+					line-height: 14px;
+					margin: 0px 10px 10px 0px;
+					text-align: left;
+					width: 400px;
+				}
+				.NFText {
+					font: normal normal normal 12px/15px Arial, Helvetica, sans-serif;
+					vertical-align: middle;
+					
+				}
+				
+				.messageText {
+				text-align: center;
+				font-weight:bold;
+				}
+				
+				.demoHeaders { margin-top: 2em; }
+				.ui-autocomplete-loading { background: white url('img/ui-anim_basic_16x16.gif') right center no-repeat; }
+				
+				
+				.toggler { width: 590px; height: 60px; }
+				#effect { width: 590px; height: 60px; position: relative; padding: 0.4em; }
+	  			#effect h3 { margin: 0; padding: 0.4em; text-align: center; }
+		</style>
+	</head>
+	<body>
+		<img src="img/icon128.png" width="80px" style="float:left; margin: 0 2em 0 0.8em; vertical-align: middle;"/>
+		<h1>Send to Google Maps - Options Page</h1>
+		
+		<p style="font-size: 1.2em; line-height: 1.5; margin: 0.5em 0; width: 600px;">You can configure up to five addresses to easily get directions to and from a selected address on any website. The addresses will be available in the sub menu "Get Directions".</p>
+		<div style="clear: both"></div>
+		
+		<div class="toggler" id="toggler">
+		  <div id="effect" class="ui-widget-content ui-corner-all">
+		    <h3 class="ui-widget-header ui-corner-all">Message</h3>
+		    <p id="message" class="NFText messageText" style="margin:5px 10px 5 px 10px;"></p>
+		  </div>
+		</div>
+		
+		<h2 class="demoHeaders">Add up to five addresses below to get directions to:</h2>
+		
+		<div id="accordion" style="width: 600px; margin-bottom: 20px">
+		</div>
+		
+		
+		<br /><br />
+		<div id="options" style="width: 600px;">
+			<h3>Options</h3>
+			<div>
+			<p style="text-align: left; font-size: 1.2em; line-height: 1.5; margin: 20px 0 0 0; width: 500px;">Please select your country to optimize search results:
+		
+		<select id="country">
+			<option id="defaultCountry" value="https://maps.google.com">Default</option>
+			<option value="https://maps.google.com.af">Afghanistan</option>
+			<option value="https://maps.google.dz">Algeria</option>
+			<option value="https://maps.google.as">American Samoa</option>
+			<option value="https://maps.google.ad">Andorra</option>
+			<option value="https://maps.google.co.ao">Angola</option>
+			<option value="https://maps.google.com.ai">Anguilla</option>
+			<option value="https://maps.google.com.ag">Antigua and Barbuda</option>
+			<option value="https://maps.google.com.ar">Argentina</option>
+			<option value="https://maps.google.am">Armenia</option>
+			<option value="https://maps.google.com.au">Australia</option>
+			<option value="https://maps.google.at">Austria</option>
+			<option value="https://maps.google.az">Azerbaijan</option>
+			<option value="https://maps.google.bs">Bahamas</option>
+			<option value="https://maps.google.com.bh">Bahrain</option>
+			<option value="https://maps.google.com.bd">Bangladesh</option>
+			<option value="https://maps.google.by">Belarus</option>
+			<option value="https://maps.google.be">Belgium</option>
+			<option value="https://maps.google.com.bz">Belize</option>
+			<option value="https://maps.google.bj">Benin</option>
+			<option value="https://maps.google.com.bo">Bolivia</option>
+			<option value="https://maps.google.ba">Bosnia and Herzegovina</option>
+			<option value="https://maps.google.co.bw">Botswana</option>
+			<option value="https://maps.google.com.br">Brazil</option>
+			<option value="https://maps.google.com.bn">Brunei Darussalam</option>
+			<option value="https://maps.google.bg">Bulgaria</option>
+			<option value="https://maps.google.bf">Burkina Faso</option>
+			<option value="https://maps.google.bi">Burundi</option>
+			<option value="https://maps.google.com.kh">Cambodia</option>
+			<option value="https://maps.google.cm">Cameroon</option>
+			<option value="https://maps.google.ca">Canada</option>
+			<option value="https://maps.google.cv">Cape Verde</option>
+			<option value="https://maps.google.cf">Central African Republic</option>
+			<option value="https://maps.google.td">Chad</option>
+			<option value="https://maps.google.cl">Chile</option>
+			<option value="https://maps.google.cn">China</option>
+			<option value="https://maps.google.com.co">Colombia</option>
+			<option value="https://maps.google.cg">Congo</option>
+			<option value="https://maps.google.cd">Democratic Republic of the Congo</option>
+			<option value="https://maps.google.co.ck">Cook Islands</option>
+			<option value="https://maps.google.co.cr">Costa Rica</option>
+			<option value="https://maps.google.ci">Cote d'Ivoire</option>
+			<option value="https://maps.google.hr">Croatia</option>
+			<option value="https://maps.google.com.cu">Cuba</option>
+			<option value="https://maps.google.com.cy">Cyprus</option>
+			<option value="https://maps.google.cz">Czech Republic</option>
+			<option value="https://maps.google.dk">Denmark</option>
+			<option value="https://maps.google.dj">Djibouti</option>
+			<option value="https://maps.google.dm">Dominica</option>
+			<option value="https://maps.google.com.do">Dominican Republic</option>
+			<option value="https://maps.google.com.ec">Ecuador</option>
+			<option value="https://maps.google.com.eg">Egypt</option>
+			<option value="https://maps.google.com.sv">El Salvador</option>
+			<option value="https://maps.google.ee">Estonia</option>
+			<option value="https://maps.google.com.et">Ethiopia</option>
+			<option value="https://maps.google.com.fj">Fiji</option>
+			<option value="https://maps.google.fi">Finland</option>
+			<option value="https://maps.google.fr">France</option>
+			<option value="https://maps.google.ga">Gabon</option>
+			<option value="https://maps.google.gm">Gambia</option>
+			<option value="https://maps.google.ge">Georgia</option>
+			<option value="https://maps.google.de">Germany</option>
+			<option value="https://maps.google.com.gh">Ghana</option>
+			<option value="https://maps.google.com.gi">Gibraltar</option>
+			<option value="https://maps.google.gr">Greece</option>
+			<option value="https://maps.google.gl">Greenland</option>
+			<option value="https://maps.google.gp">Guadeloupe</option>
+			<option value="https://maps.google.com.gt">Guatemala</option>
+			<option value="https://maps.google.gg">Guersney</option>
+			<option value="https://maps.google.gy">Guyana</option>
+			<option value="https://maps.google.ht">Haiti</option>
+			<option value="https://maps.google.hn">Honduras</option>
+			<option value="https://maps.google.com.hk">Hong Kong</option>
+			<option value="https://maps.google.hu">Hungary</option>
+			<option value="https://maps.google.is">Iceland</option>
+			<option value="https://maps.google.co.in">India</option>
+			<option value="https://maps.google.co.id">Indonesia</option>
+			<option value="https://maps.google.iq">Iraq</option>
+			<option value="https://maps.google.ie">Ireland</option>
+			<option value="https://maps.google.im">Isle of Man</option>
+			<option value="https://maps.google.co.il">Israel</option>
+			<option value="https://maps.google.it">Italy</option>
+			<option value="https://maps.google.com.jm">Jamaica</option>
+			<option value="https://maps.google.co.jp">Japan</option>
+			<option value="https://maps.google.je">Jersey</option>
+			<option value="https://maps.google.jo">Jordan</option>
+			<option value="https://maps.google.kz">Kazakhstan</option>
+			<option value="https://maps.google.co.ke">Kenya</option>
+			<option value="https://maps.google.ki">Kiribati</option>
+			<option value="https://maps.google.co.kr">Korea</option>
+			<option value="https://maps.google.com.kw">Kuwait</option>
+			<option value="https://maps.google.kg">Kyrgyzstan</option>
+			<option value="https://maps.google.la">Lao People\'s Democratic Republic</option>
+			<option value="https://maps.google.lv">Latvia</option>
+			<option value="https://maps.google.com.lb">Lebanon</option>
+			<option value="https://maps.google.co.ls">Lesotho</option>
+			<option value="https://maps.google.com.ly">Libya</option>
+			<option value="https://maps.google.li">Liechtenstein</option>
+			<option value="https://maps.google.lt">Lithuania</option>
+			<option value="https://maps.google.lu">Luxembourg</option>
+			<option value="https://maps.google.mk">Macedonia</option>
+			<option value="https://maps.google.mg">Madagascar</option>
+			<option value="https://maps.google.mw">Malawi</option>
+			<option value="https://maps.google.com.my">Malaysia</option>
+			<option value="https://maps.google.mv">Maldives</option>
+			<option value="https://maps.google.ml">Mali</option>
+			<option value="https://maps.google.com.mt">Malta</option>
+			<option value="https://maps.google.mu">Mauritius</option>
+			<option value="https://maps.google.com.mx">Mexico</option>
+			<option value="https://maps.google.fm">Micronesia</option>
+			<option value="https://maps.google.md">Moldova, Republic of</option>
+			<option value="https://maps.google.mn">Mongolia</option>
+			<option value="https://maps.google.me">Montenegro</option>
+			<option value="https://maps.google.ms">Montserrat</option>
+			<option value="https://maps.google.co.ma">Morocco</option>
+			<option value="https://maps.google.co.mz">Mozambique</option>
+			<option value="https://maps.google.com.na">Namibia</option>
+			<option value="https://maps.google.nr">Nauru</option>
+			<option value="https://maps.google.com.np">Nepal</option>
+			<option value="https://maps.google.nl">Netherlands</option>
+			<option value="https://maps.google.co.nz">New Zealand</option>
+			<option value="https://maps.google.com.ni">Nicaragua</option>
+			<option value="https://maps.google.ne">Niger</option>
+			<option value="https://maps.google.com.ng">Nigeria</option>
+			<option value="https://maps.google.nu">Niue</option>
+			<option value="https://maps.google.com.nf">Norfolk Island</option>
+			<option value="https://maps.google.no">Norway</option>
+			<option value="https://maps.google.com.om">Oman</option>
+			<option value="https://maps.google.com.pk">Pakistan</option>
+			<option value="https://maps.google.ps">Palestinian Territory</option>
+			<option value="https://maps.google.com.pa">Panama</option>
+			<option value="https://maps.google.com.py">Paraguay</option>
+			<option value="https://maps.google.com.pe">Peru</option>
+			<option value="https://maps.google.com.ph">Philippines</option>
+			<option value="https://maps.google.pn">Pitcairn</option>
+			<option value="https://maps.google.pl">Poland</option>
+			<option value="https://maps.google.pt">Portugal</option>
+			<option value="https://maps.google.com.pr">Puerto Rico</option>
+			<option value="https://maps.google.com.qa">Qatar</option>
+			<option value="https://maps.google.ro">Romania</option>
+			<option value="https://maps.google.ru">Russia</option>
+			<option value="https://maps.google.rw">Rwanda</option>
+			<option value="https://maps.google.sh">Saint Helena</option>
+			<option value="https://maps.google.com.vc">Saint Vincent and the Grenadines</option>
+			<option value="https://maps.google.ws">Samoa</option>
+			<option value="https://maps.google.sm">San Marino</option>
+			<option value="https://maps.google.st">Sao Tome and Principe</option>
+			<option value="https://maps.google.com.sa">Saudi Arabia</option>
+			<option value="https://maps.google.sn">Senegal</option>
+			<option value="https://maps.google.rs">Serbia</option>
+			<option value="https://maps.google.sc">Seychelles</option>
+			<option value="https://maps.google.com.sl">Sierra Leone</option>
+			<option value="https://maps.google.com.sg">Singapore</option>
+			<option value="https://maps.google.sk">Slovakia</option>
+			<option value="https://maps.google.si">Slovenia</option>
+			<option value="https://maps.google.com.sb">Solomon Islands</option>
+			<option value="https://maps.google.so">Somalia</option>
+			<option value="https://maps.google.co.za">South Africa</option>
+			<option value="https://maps.google.es">Spain</option>
+			<option value="https://maps.google.lk">Sri Lanka</option>
+			<option value="https://maps.google.se">Sweden</option>
+			<option value="https://maps.google.ch">Switzerland</option>
+			<option value="https://maps.google.com.tw">Taiwan, Province of China</option>
+			<option value="https://maps.google.com.tj">Tajikistan</option>
+			<option value="https://maps.google.co.tz">Tanzania, United Republic of</option>
+			<option value="https://maps.google.co.th">Thailand</option>
+			<option value="https://maps.google.tl">Timor-Leste</option>
+			<option value="https://maps.google.tg">Togo</option>
+			<option value="https://maps.google.tk">Tokelau</option>
+			<option value="https://maps.google.to">Tonga</option>
+			<option value="https://maps.google.tt">Trinidad and Tobago</option>
+			<option value="https://maps.google.tn">Tunisia</option>
+			<option value="https://maps.google.com.tr">Turkey</option>
+			<option value="https://maps.google.tm">Turkmenistan</option>
+			<option value="https://maps.google.co.ug">Uganda</option>
+			<option value="https://maps.google.com.ua">Ukraine</option>
+			<option value="https://maps.google.ae">United Arab Emirates</option>
+			<option value="https://maps.google.co.uk">United Kingdom</option>
+			<option value="https://maps.google.com">United States</option>
+			<option value="https://maps.google.com.uy">Uruguay</option>
+			<option value="https://maps.google.co.uz">Uzbekistan</option>
+			<option value="https://maps.google.vu">Vanuatu</option>
+			<option value="https://maps.google.co.ve">Venezuela, Bolivarian Republic of</option>
+			<option value="https://maps.google.com.vn">Viet Nam</option>
+			<option value="https://maps.google.vg">Virgin Islands, British</option>
+			<option value="https://maps.google.co.vi">Virgin Islands, U.S.</option>
+			<option value="https://maps.google.co.zm">Zambia</option>
+			<option value="https://maps.google.co.zw">Zimbabwe</option>
+		</select> 
+		</p>		
+		
+		<p style="text-align: left; font-size: 1.2em; line-height: 1.5; margin: 20px 0 0 0; width: 500px;">Default Travel Mode</p>
+		<form>
+			<input type="radio" name="transportationConfig" value="d">Driving<br>
+			<input type="radio" name="transportationConfig" value="w">Walking<br>
+			<input type="radio" name="transportationConfig" value="b">Bicycling<br>
+			<input type="radio" name="transportationConfig" value="r">Public Transport<br>
+		</form>
+		
+		<p style="text-align: left; font-size: 1.2em; line-height: 1.5; margin: 20px 0 0 0; width: 500px;">Context Menu options</p>
+		<form>
+			<input type="checkbox" name="conMenuConfig" value="curPos">Show <i>Where am I right now</i> menu entry<br>
+			<input type="checkbox" name="conMenuConfig" value="dirSel">Show <i>Directions from text selection</i> menu entries<br>
+			<input type="checkbox" name="conMenuConfig" value="dirCurPos">Show <i>Directions from current position</i> menu entries<br>
+		</form>		
+
+		<p style="text-align: left; font-size: 1.2em; line-height: 1.5; margin: 20px 0 0 0; width: 500px;">Keyboard shortcuts</p>
+		To configure keyboard shortcuts open: <i>chrome://extensions/shortcuts</i>
+			</div>
+		</div>
+		
+		<br /><br />
+		
+		<div style="text-align: right; width: 600px; margin-bottom:20px">
+		</div><div style="clear: both"></div>
+	</body>
+</html>
