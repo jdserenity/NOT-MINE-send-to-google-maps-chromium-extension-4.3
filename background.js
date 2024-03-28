@@ -1,3 +1,5 @@
+// /////// jd: *** removed a bunch of context menus that didn't work and streamlined the process of sending to google maps to one context menu option instead of having a sub menu. basically all commented out code is in buildContextMenu() *** //////
+
 importScripts('/js/sendToGoogleMaps.js');
 
 //= =========== CHROME CONTEXT MENU IDs
@@ -196,7 +198,8 @@ async function onClickHandler(info, tab) {
   log('ONCLICK: retrieved ID ' + info.menuItemId + '...retrieved address ' + selectedText);
 
   if (tokens == undefined || tokens[0] == undefined) {log('ONCLICK: invalid token: ' + tokens);} else {
-    if (tokens[0] == showOnMapsEntry || tokens[0] == parentID) // show Selection on Maps
+    // tokens[0] == showOnMapsEntry || 
+    if (tokens[0] == parentID) // show Selection on Maps
     {
       await showSelectionOnMap(selectedText, 'SELECTION', tab);
     } else if (tokens[0] == whereAmIEntry) // show where Am I on Maps
@@ -385,7 +388,8 @@ async function buildContextMenu() {
   // Parent Menu
 
   await chrome.contextMenus.removeAll();
-	
+  
+  /////////////// jd: *** this is now the only context menu
   chrome.contextMenus.create({'title': 'Send to Google Maps', 'id': parentID, 'contexts':['selection']});
 
   // CHILDREN
@@ -396,94 +400,94 @@ async function buildContextMenu() {
     var areAddressesSaved = await addressesSaved();
 
     // Show on Maps
-    chrome.contextMenus.create({'title': 'Show on Google Maps', 'id': showOnMapsEntry, 'parentId': parentID, 'contexts':['selection']});
+    // chrome.contextMenus.create({'title': 'Show on Google Maps', 'id': showOnMapsEntry, 'parentId': parentID, 'contexts':['selection']});
 		
     // Where am I?
-    if (conMenuConfig.curPos == true) {
-      chrome.contextMenus.create({'title': 'Where am I right now?', 'id': whereAmIEntry, 'parentId': parentID, 'contexts':['selection']});
-    }
+    // if (conMenuConfig.curPos == true) {
+    //   chrome.contextMenus.create({'title': 'Where am I right now?', 'id': whereAmIEntry, 'parentId': parentID, 'contexts':['selection']});
+    // }
 
-    if (conMenuConfig.dirSel || conMenuConfig.dirCurPos || conMenuConfig.curPos) {
-      // Make a seperator
-      chrome.contextMenus.create({'type': 'separator', 'id': 'sep_WAI', 'parentId': parentID, 'contexts':['selection']});
-    }
+    // if (conMenuConfig.dirSel || conMenuConfig.dirCurPos || conMenuConfig.curPos) {
+    //   // Make a seperator
+    //   chrome.contextMenus.create({'type': 'separator', 'id': 'sep_WAI', 'parentId': parentID, 'contexts':['selection']});
+    // }
 
     // Sub menu: From Selected address to...
 		
-    if (conMenuConfig.dirSel == true && (conMenuConfig.dirCurPos == true || addressesSaved())) {
-      chrome.contextMenus.create({'title': makeMenuEntry('%s', 'from'), 'id': fromSelectionMenu, 'parentId': parentID, 'contexts':['selection']});
+    // if (conMenuConfig.dirSel == true && (conMenuConfig.dirCurPos == true || addressesSaved())) {
+    //   chrome.contextMenus.create({'title': makeMenuEntry('%s', 'from'), 'id': fromSelectionMenu, 'parentId': parentID, 'contexts':['selection']});
 		
       // Sub menu: From Selected address to...
       // Here
-      if (conMenuConfig.dirCurPos == true) {
-        chrome.contextMenus.create({'title': makeMenuEntry(hereName, 'to'), 'id': fromSelectionMenu + TOKENDELIMITOR + toHereEntry, 'parentId': fromSelectionMenu, 'contexts':['selection']});
-      }
+    //   if (conMenuConfig.dirCurPos == true) {
+    //     chrome.contextMenus.create({'title': makeMenuEntry(hereName, 'to'), 'id': fromSelectionMenu + TOKENDELIMITOR + toHereEntry, 'parentId': fromSelectionMenu, 'contexts':['selection']});
+    //   }
       // saved addresses
 
-      if (areAddressesSaved) {
-        chrome.contextMenus.create({'type': 'separator', 'id': 'Sep_SA', 'parentId': fromSelectionMenu, 'contexts':['selection']});				
-        var savedAddresses = await readInAddresses();
+    //   if (areAddressesSaved) {
+    //     chrome.contextMenus.create({'type': 'separator', 'id': 'Sep_SA', 'parentId': fromSelectionMenu, 'contexts':['selection']});				
+    //     var savedAddresses = await readInAddresses();
 
-        for (var i = 0; i < savedAddresses.length; i++) {
-          chrome.contextMenus.create({'title': makeMenuEntry(savedAddresses[i].name, 'to'), 'id': fromSelectionMenu + TOKENDELIMITOR + addressPrefix + i + addressEntrySuffix, 'parentId': fromSelectionMenu, 'contexts':['selection']});
-        }
-      }
-    }
+    //     for (var i = 0; i < savedAddresses.length; i++) {
+    //       chrome.contextMenus.create({'title': makeMenuEntry(savedAddresses[i].name, 'to'), 'id': fromSelectionMenu + TOKENDELIMITOR + addressPrefix + i + addressEntrySuffix, 'parentId': fromSelectionMenu, 'contexts':['selection']});
+    //     }
+    //   }
+    // }
 		
     // end Sub menu: From Selected address to...
 		
     // Sub menu: From here to ...
 	
-    if (conMenuConfig.dirCurPos == true) {
-      chrome.contextMenus.create({'title': makeMenuEntry(hereName, 'from'), 'id': fromHereMenu, 'parentId': parentID, 'contexts':['selection']});
+    // if (conMenuConfig.dirCurPos == true) {
+    //   chrome.contextMenus.create({'title': makeMenuEntry(hereName, 'from'), 'id': fromHereMenu, 'parentId': parentID, 'contexts':['selection']});
 			
       // Sub Menu: From here to ...
 			
       // selected address
-      chrome.contextMenus.create({'title': makeMenuEntry('%s', 'to'), 'id': fromHereMenu + TOKENDELIMITOR + toSelectionEntry, 'parentId': fromHereMenu, 'contexts':['selection']});
+    //   chrome.contextMenus.create({'title': makeMenuEntry('%s', 'to'), 'id': fromHereMenu + TOKENDELIMITOR + toSelectionEntry, 'parentId': fromHereMenu, 'contexts':['selection']});
 			
       // saved addresses
       // var areAddressesSaved = await addressesSaved();
 			
-      if (areAddressesSaved) {
-        chrome.contextMenus.create({'type': 'separator', 'id': 'SEP_SA_HERE', 'parentId': fromHereMenu, 'contexts':['selection']});
+    //   if (areAddressesSaved) {
+    //     chrome.contextMenus.create({'type': 'separator', 'id': 'SEP_SA_HERE', 'parentId': fromHereMenu, 'contexts':['selection']});
 				
-        var savedAddresses = await readInAddresses();
+    //     var savedAddresses = await readInAddresses();
 
-        for (var i = 0; i < savedAddresses.length; i++) {
-          chrome.contextMenus.create({'title': makeMenuEntry(savedAddresses[i].name, 'to'), 'id': fromHereMenu + TOKENDELIMITOR + addressPrefix + i + addressEntrySuffix, 'parentId': fromHereMenu, 'contexts':['selection']});
-        }
-      } // end from here menu
-    }
+    //     for (var i = 0; i < savedAddresses.length; i++) {
+    //       chrome.contextMenus.create({'title': makeMenuEntry(savedAddresses[i].name, 'to'), 'id': fromHereMenu + TOKENDELIMITOR + addressPrefix + i + addressEntrySuffix, 'parentId': fromHereMenu, 'contexts':['selection']});
+    //     }
+    //   } // end from here menu
+    // }
     // addresses menus
     // var areAddressesSaved = await addressesSaved();
 
-    if (areAddressesSaved) {
-      var savedAddresses = await readInAddresses();
+    // if (areAddressesSaved) {
+    //   var savedAddresses = await readInAddresses();
 
-      for (var i = 0; i < savedAddresses.length; i++) {
+    //   for (var i = 0; i < savedAddresses.length; i++) {
 				
-        if (i + 1 < savedAddresses.length) {
-          chrome.contextMenus.create({'type': 'separator', 'id': 'SEP_SA_Between', 'parentId': parentID, 'contexts':['selection']});
-        }
+        // if (i + 1 < savedAddresses.length) {
+        //   chrome.contextMenus.create({'type': 'separator', 'id': 'SEP_SA_Between', 'parentId': parentID, 'contexts':['selection']});
+        // }
 				
         // address i parent menu
-        if (conMenuConfig.dirSel == true || conMenuConfig.dirCurPos == true) {
-          chrome.contextMenus.create({'title': makeMenuEntry(savedAddresses[i].name, 'from'), 'id': addressPrefix + i + addressMenuSuffix, 'parentId': parentID, 'contexts':['selection']});
-        }
+        // if (conMenuConfig.dirSel == true || conMenuConfig.dirCurPos == true) {
+        //   chrome.contextMenus.create({'title': makeMenuEntry(savedAddresses[i].name, 'from'), 'id': addressPrefix + i + addressMenuSuffix, 'parentId': parentID, 'contexts':['selection']});
+        // }
         // Sub menu: From address i to...
 				
         // to selection
-        if (conMenuConfig.dirSel == true) {
-          chrome.contextMenus.create({'title': makeMenuEntry('%s', 'to'), 'id': addressPrefix + i + addressMenuSuffix + TOKENDELIMITOR + toSelectionEntry, 'parentId': addressPrefix + i + addressMenuSuffix, 'contexts':['selection']});
-        }
+        // if (conMenuConfig.dirSel == true) {
+        //   chrome.contextMenus.create({'title': makeMenuEntry('%s', 'to'), 'id': addressPrefix + i + addressMenuSuffix + TOKENDELIMITOR + toSelectionEntry, 'parentId': addressPrefix + i + addressMenuSuffix, 'contexts':['selection']});
+        // }
 				
         // Here
-        if (conMenuConfig.dirCurPos == true) {
-          chrome.contextMenus.create({'title': makeMenuEntry(hereName, 'to'), 'id': addressPrefix + i + addressMenuSuffix + TOKENDELIMITOR + toHereEntry, 'parentId': addressPrefix + i + addressMenuSuffix, 'contexts':['selection']});
-        }
-      }	
-    }
+        // if (conMenuConfig.dirCurPos == true) {
+        //   chrome.contextMenus.create({'title': makeMenuEntry(hereName, 'to'), 'id': addressPrefix + i + addressMenuSuffix + TOKENDELIMITOR + toHereEntry, 'parentId': addressPrefix + i + addressMenuSuffix, 'contexts':['selection']});
+        // }
+    //   }	
+    // }
   }
 }
 
